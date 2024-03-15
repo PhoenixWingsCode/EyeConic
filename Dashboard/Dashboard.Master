@@ -1,0 +1,144 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="EyeConic_Solution.Dashboard.Dashboard" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Admin</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="vendors/feather/feather.css" rel="stylesheet" />
+    <link href="vendors/ti-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="vendors/css/vendor.bundle.base.css" rel="stylesheet" />
+    <link href="css/vertical-layout-light/style.css" rel="stylesheet" />
+    <link href="vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+    <link href="vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container-scroller">
+            <!-- partial:partials/_navbar.html -->
+            <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo mr-5" href="Home.aspx">
+
+                        <img src="images/EyeConic.png" class="ml-4" alt="logo" /><label style="font-family:'Baleny Serif Free';font-size:20px;color:black">EyeConic</label></a>
+                    
+                    <a class="navbar-brand brand-logo-mini" href="Home.aspx">
+                        <img src="images/EyeConic.png" alt="logo" style="width:25px;height:20px" /></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="icon-menu"></span>
+                    </button>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item nav-profile dropdown">
+                            <a class="nav-link dropdown-toggle" href="Home.aspx" data-toggle="dropdown" title="Logout">
+                                <img src="images/faces/face28.jpg" alt="profile" />
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="icon-menu"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <asp:LinkButton runat="server" ID="BtnHome" class="nav-link" OnClientClick="markSelected('BtnCategories');" OnClick="BtnHome_Click">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-home" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton runat="server" ID="BtnCategories" class="nav-link" OnClick="BtnCategories_Click" OnClientClick="markSelected('BtnCategories');">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-apps" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Categories</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton runat="server" ID="BtnSubCategories" class="nav-link" OnClientClick="markSelected('BtnSubCategories');" OnClick="BtnSubCategories_Click">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-view-grid" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Sub Categories</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton runat="server" ID="BtnProducts" class="nav-link" OnClick="BtnProducts_Click">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-dropbox" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Products</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton runat="server" ID="BtnBills" class="nav-link" OnClick="BtnBills_Click">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-file" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Bills</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <asp:LinkButton runat="server" ID="BtnUsers" class="nav-link" OnClick="BtnUsers_Click">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-account" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Users</span>
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton runat="server" ID="BtnLogout" OnClick="BtnLogout_Click" class="nav-link">
+                                <i class="mdi justify-content-md-center mdi-24px mdi-logout" style="vertical-align: middle; margin-right: 5px;"></i>
+                                <span class="menu-title">Logout</span>
+                            </asp:LinkButton>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. <a href="#" target="_blank">EyeConic Admin Dashboard</a> . All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Prepared by Hiral Kanakhara </span>
+                        </div>
+                    </footer>
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+    </form>
+
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="js/dataTables.select.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <script src="js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+
+</body>
+</html>
